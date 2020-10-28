@@ -28,7 +28,7 @@ public class CarDao {
         });
 
     }
-
+// to do -> validacja
     @EventListener(ApplicationReadyEvent.class)
     public void dbInit() {
         save(new CarModel(1, "Hyundai", "Accent", "Zielony"));
