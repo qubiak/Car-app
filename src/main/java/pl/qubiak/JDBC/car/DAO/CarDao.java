@@ -17,7 +17,7 @@ public class CarDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void add(CarModel car){
+    public void save(CarModel car){
 
         String sql = "INSERT INTO Car VALUES(?,?,?,?)";
         jdbcTemplate.update(sql,new Object[]{
@@ -31,10 +31,10 @@ public class CarDao {
 
     @EventListener(ApplicationReadyEvent.class)
     public void dbInit() {
-        add(new CarModel(1, "Hyundai", "Accent", "Zielony"));
-        add(new CarModel(2, "Daewoo", "Leganza", "Niebieski"));
-        add(new CarModel(3, "Citroen", "C4 picasso", "Czarny"));
-        add(new CarModel(4, "Kia", "Sportage", "Szary"));
+        save(new CarModel(1, "Hyundai", "Accent", "Zielony"));
+        save(new CarModel(2, "Daewoo", "Leganza", "Niebieski"));
+        save(new CarModel(3, "Citroen", "C4 picasso", "Czarny"));
+        save(new CarModel(4, "Kia", "Sportage", "Szary"));
 
     }
 
