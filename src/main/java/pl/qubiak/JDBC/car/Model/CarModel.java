@@ -1,11 +1,14 @@
 package pl.qubiak.JDBC.car.Model;
 
+import javax.validation.constraints.NotNull;
+
 public class CarModel {
 
     private int carId;
     private String mark;
     private String model;
     private String color;
+
 
     public CarModel(int carId, String mark, String model, String color) {
         this.carId = carId;

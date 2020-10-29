@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import pl.qubiak.JDBC.car.Model.CarModel;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class CarDao {
 
@@ -17,34 +20,36 @@ public class CarDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void save(CarModel car){
+    public void save(CarModel car) {
 
         String sql = "INSERT INTO Car VALUES(?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{
+        jdbcTemplate.update(sql, new Object[]{
                 car.getCarId(),
                 car.getMark(),
                 car.getModel(),
                 car.getColor()
         });
+    }
+
+    public List<Map<String, Object>> showByMark(String mark) {
+        String sql = "SELECT * FROM Car WHERE mark LIKE ?";
+        return jdbcTemplate.queryForList(sql, new Object[]{mark});
 
     }
-// to do -> validacja
+}
+
+    /*
     @EventListener(ApplicationReadyEvent.class)
     public void dbInit() {
         save(new CarModel(1, "Hyundai", "Accent", "Zielony"));
         save(new CarModel(2, "Daewoo", "Leganza", "Niebieski"));
         save(new CarModel(3, "Citroen", "C4 picasso", "Czarny"));
         save(new CarModel(4, "Kia", "Sportage", "Szary"));
-
     }
 
-}
-
-
-/*    @Bean
+     @Bean
     public void dbInit() {
         String sql = "CREATE TABLE Car(car_id int, mark varchar(255), model varchar(255), color varchar(255));";
         getJdbcTemplate().update(sql);
     }
-
  */
